@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Button to 8</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #FEE7F3;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		.circle {
+			position: absolute;
+			top: -100px;
+			left: -100px;
+			width: calc(100vw + 200px);
+			height: calc(100vh + 200px);
+			border: 100px solid #5DADE2;
+			border-radius: 50%;
+			transition: all 1s ease-out;
+			z-index: -1;
+		}
+
+		.circle.top {
+			transform: translateY(-50%) translateX(-50%) scale(0.1);
+		}
+
+		.circle.bottom {
+			transform: translateY(50%) translateX(50%) scale(0.1);
+		}
+
+		.circle.eight.top {
+			top: calc(50% - 100px);
+			left: calc(50% - 250px);
+			width: 500px;
+			height: 200px;
+			border-top-left-radius: 200px 200px;
+			border-top-right-radius: 200px 200px;
+			border-bottom: none;
+			border-right: none;
+		}
+
+		.circle.eight.bottom {
+			top: calc(50% + 100px);
+			left: calc(50% - 250px);
+			width: 500px;
+			height: 200px;
+			border-bottom-left-radius: 200px 200px;
+			border-bottom-right-radius: 200px 200px;
+			border-top: none;
+			border-left: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="circle top"></div>
+	<div class="circle bottom"></div>
+
+	<script>
+		const circles = document.querySelectorAll('.circle');
+
+		let isEight = false;
+
+		document.addEventListener('click', () => {
+			isEight = !isEight;
+
+			if (isEight) {
+				circles[0].classList.add('eight', 'top');
+				circles[1].classList.add('eight', 'bottom');
+			} else {
+				circles[0].classList.remove('eight', 'top');
+				circles[1].classList.remove('eight', 'bottom');
+			}
+		});
+	</script>
+</body>
+</html>

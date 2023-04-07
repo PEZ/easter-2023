@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hemliga harens sifferlek</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #98FB98;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    text {
+      font-family: 'Comic Sans MS', sans-serif;
+      font-size: 7;
+      text-anchor: middle;
+      fill: white;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/morphSVGPlugin.min.js"></script>
+  <script src="morph.js"></script>
+  <script>
+    function toggleShape() {
+      const circle = document.getElementById('circle');
+      const eight = document.getElementById('eight');
+      const text = document.getElementById('text');
+
+      gsap.to(circle, {
+        duration: 1,
+        morphSVG: circle.getAttribute('d') === circle.dataset.initialPath ? eight.dataset.eightPath : circle.dataset.initialPath,
+        onComplete: () => {
+          text.textContent = text.textContent === 'Avslöja' ? '8' : 'Avslöja';
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+    <div class="container" onclick="toggleShape()">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" onclick="toggleShape()">
+    <path id="circle" d="M50 10c22.091 0 40 17.909 40 40s-17.909 40-40 40S10 72.091 10 50 27.909 10 50 10z" fill="#ADD8E6" data-initial-path="M50 10c22.091 0 40 17.909 40 40s-17.909 40-40 40S10 72.091 10 50 27.909 10 50 10z"></path>
+    <path id="eight" d="M50 10c22.091 0 40 17.909 40 40s-17.909 40-40 40S10 72.091 10 50 27.909 10 50 10z" fill="#ADD8E6" data-eight-path="M50,10C28.218,10,10,28.218,10,50C10,71.782,28.218,90,50,90C71.782,90,90,71.782,90,50C90,28.218,71.782,10,50,10ZM50,25C61.598,25,71,34.402,71,46C71,57.598,61.598,67,50,67C38.402,67,29,57.598,29,46C29,34.402,38.402,25,50,25ZM50,73C61.598,73,71,82.402,71,94C71,105.598,61.598,115,50,115C38.402,115,29,105.598,29,94C29,82.402,38.402,73,50,73Z"></path>
+    <text id="text" x="50" y="50" dy=".3em">Avslöja</text>
+      </svg>
+      </div>
+</body>
+</html>
