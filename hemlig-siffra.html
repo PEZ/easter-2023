@@ -23,11 +23,13 @@
             border-radius: 50%;
             background-image: repeating-linear-gradient(to right, #FEEFB3, #FEEFB3 15px, #FDFD96 15px, #FDFD96 30px);
             background-size: 100% 100%;
-            transform: translate(-15px, 10px);
+            transform: translate(-5px, 10px);
             clip-path: url(#donutMask);
+            opacity: 0.05;
         }
 
         .animate .circle{
+            opacity: 1.0;
             animation: animateCircle 4s linear infinite alternate;
         }
 
