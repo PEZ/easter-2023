@@ -28,18 +28,31 @@
             opacity: 0.2;
         }
 
-        .animate .circle{
+
+        .animate .circle {
             opacity: 1.0;
-            animation: animateCircle 5s linear infinite alternate;
+            animation: animateCircle 20s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
         }
 
         @keyframes animateCircle {
-            from {
-                transform: translate(-450px, 10px);
+            0% {
+                transform: translate(0px, 10px);
+                opacity: 0.35;
             }
 
-            to {
-                transform: translate(450px, 10px);
+            25% {
+                transform: translate(45px, 10px);
+                opacity: 1;
+            }
+
+            75% {
+                transform: translate(-45px, 10px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(0px, 10px);
+                opacity: 0.35;
             }
         }
 
@@ -51,12 +64,54 @@
             background-color: #FDFD96;
             padding: 10px 20px;
             border-radius: 10px;
+            border: 3px solid #FEEFB3;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: #333;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
             transition: opacity 0.5s ease;
+            user-select: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
 
         .hidden {
             opacity: 0;
             pointer-events: none;
+        }
+
+        @media (orientation: landscape) {
+            body {
+                flex-direction: row;
+            }
+
+            .circle {
+                transform-origin: center;
+                background-image: repeating-linear-gradient(to bottom, #FEEFB3, #FEEFB3 15px, #FDFD96 15px, #FDFD96 30px);
+                transform: rotate(90deg) translate(-5px, 10px);
+            }
+
+            .animate .circle {
+                animation: animateCircleLandscape 5s linear infinite alternate;
+            }
+
+            @keyframes animateCircleLandscape {
+                from {
+                    transform: rotate(90deg) translate(10px, -750px);
+                }
+
+                to {
+                    transform: rotate(90deg) translate(10px, 750px);
+                }
+            }
+
+            .start-btn {
+                top: 50%;
+                left: 50%;
+                transform: translateY(-50%) translateX(-50%) rotate(90deg);
+            }
         }
     </style>
     <script>
@@ -77,12 +132,11 @@
 <body onclick="stopAnimation(event)">
     <svg width="0" height="0">
         <defs>
-            <clipPath id='donutMask'> 
+            <clipPath id='donutMask'>
                 <path d='M0,150 A150,150 0,1,1 300,150 A150,150 0,1,1 0,150 z 
-                M75,150 A75,75 0,1,1 225,150 A75,75 0,1,1 75,150 z' 
-                clip-rule='evenodd'/> 
-              </clipPath>        
-            </defs>
+                M75,150 A75,75 0,1,1 225,150 A75,75 0,1,1 75,150 z' clip-rule='evenodd' />
+            </clipPath>
+        </defs>
     </svg>
     <div class="circle top"></div>
     <div class="circle bottom"></div>
